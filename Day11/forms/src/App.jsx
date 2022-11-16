@@ -5,24 +5,43 @@ import React ,{useState}from "react"
 
 function App() {
 
-const [text,setText] = useState("")
-const [text2,setText2] = useState("")
+const [fullname,setFullname] = useState({
+  fname:"",
+  lname:""
+})
 
-const [firstname,setFirstname] = useState()
-const [lastnamenew,setLastnameNew] = useState()
 
 
 const textChange = (event) => {
-  setText(event.target.value)
+  // console.log(event.target.name);
+  const name = event.target.name
+  const value = event.target.value
+
+  setFullname((ddd) => {
+   
+    if(name === "fname")
+    {
+      return {
+        fname:value,
+    lname:ddd.lname
+      }
+    }
+   else if(name === "lname")
+    {
+      return {
+        fname:ddd.fname,
+  lname:value
+      }
+    }
+
+  })
+
 }
 
-const  textChange2 = (event) => {
-  setText2(event.target.value)
-}
+
 const onSubmits = (event) => {
   event.preventDefault()
-  setFirstname(text)
-  setLastnameNew(text2)
+
 }
 
   return (
@@ -30,9 +49,9 @@ const onSubmits = (event) => {
     <form onSubmit={onSubmits}>
 
       <div>
-        <h1>Hello {firstname} {lastnamenew} </h1>
-        <input  type="text"  placeholder='Enter your name' onChange={textChange} value ={text}/>
-        <input  type="text"  placeholder='Enter your lastname' onChange={textChange2} value ={text2}/>
+        <h1>Hello {fullname.fname} {fullname.lname} </h1>
+        <input name='fname' type="text"  placeholder='Enter your name' onChange={textChange} value ={fullname.fname}/>
+        <input name='lname' type="text"  placeholder='Enter your lastname' onChange={textChange} value ={fullname.lname}/>
         <button type='submit'>Click me</button>
       </div>
       </form>
