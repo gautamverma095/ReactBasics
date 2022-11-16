@@ -14,27 +14,33 @@ function App() {
     const name = event.target.name;
     const value = event.target.value;
 
-    setFullname((ddd) => {
-      if (name === "fname") {
-        return {
-          fname: value,
-          lname: ddd.lname,
-          email: ddd.email
-        };
-      } else if (name === "lname") {
-        return {
-          fname: ddd.fname,
-          lname: value,
-          email: ddd.email
-        };
+    setFullname((preValue) => {
+      return {
+        ...preValue,
+        [name]:value
       }
-      else if (name === "email") {
-        return {
-          fname: ddd.fname,
-          lname: ddd.lname,
-          email: value
-        };
-      }
+
+    // console.log(ddd);
+      // if (name === "fname") {
+      //   return {
+      //     fname: value,
+      //     lname: ddd.lname,
+      //     email: ddd.email
+      //   };
+      // } else if (name === "lname") {
+      //   return {
+      //     fname: ddd.fname,
+      //     lname: value,
+      //     email: ddd.email
+      //   };
+      // }
+      // else if (name === "email") {
+      //   return {
+      //     fname: ddd.fname,
+      //     lname: ddd.lname,
+      //     email: value
+      //   };
+      // }
     });
   };
 
