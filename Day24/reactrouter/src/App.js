@@ -1,13 +1,22 @@
 import './App.css';
 import { BrowserRouter,Routes,Route } from "react-router-dom";
+import About from './About';
+import Contact from './Contact';
+import Home from './Home';
+import Error from './Error';
 
 function App() {
   return (
     <>
+
       <BrowserRouter>
+
       <Routes>
-        <Route  path='/' element = {<div>Home Page</div>}/>
-        <Route  path='/contact' element = {<div>Contact Page</div>}/>
+        <Route  path='/' element = {<Home/>}>
+        <Route  path='/about' element = {<About/>}/>
+        <Route  path='/contact' element = {<Contact/>}/>
+        <Route path='*' element = {<Error/>}/>
+        </Route>
       </Routes>
 
       </BrowserRouter>
