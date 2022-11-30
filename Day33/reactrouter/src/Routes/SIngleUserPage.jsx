@@ -1,44 +1,38 @@
 import React from 'react'
-import { useState,useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
-const getUser = (id) =>  {
+const getUser = (id) => {
 
-    return fetch(`https://reqres.in/api/users/${id}`).then( (res) => res.json())
-  
-  }
+  return fetch(`https://reqres.in/api/users/${id}`).then((res) => res.json())
 
-const SIngleUserPage = () => { 
-    const [data,setData] = useState([])
-    const params = useParams()
-    console.log(data);
+}
+
+const SIngleUserPage = () => {
+  const [data, setData] = useState([])
+  const params = useParams()
+
+  useEffect(() => {
+    getUser(params.id).then((res) => {
+      setData(res.data)
+    })
 
 
-    useEffect(() => {
-      getUser(params.id).then((res) => {
-  setData(res.data)
-      })
-    
-    
-    }, [params.id])
-    
- 
+  }, [params.id])
+
+
 
   return (
     <div>
-    
-    <h1>id:{params.id}</h1>
-
-  
-
-    {
+      {
         <>
-      
-                 <h1>{data.first_name}</h1>
-                   <img src={data.avatar} alt="dd" />
-                   </>
-    }
-    <Link to="/users">Go Back To users</Link>
+
+          <h1>{data.first_name}</h1>
+          <img src={data.avatar} alt="dd" />
+          <h1>id:{params.id}</h1>
+        </>
+      }
+      <Link to="/users">Go Back To users</Link>
     </div>
   )
 }
