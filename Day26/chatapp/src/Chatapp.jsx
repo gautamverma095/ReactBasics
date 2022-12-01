@@ -5,17 +5,20 @@ import Contacts from "./Contact";
 
 function ChatApp() {
   const [messages, setMessages] = useState([]);
-  const [subscribedTo, setSubscribedTo] = useState(users[0]); // { id: 1, name: Aman  }
+  const [subscribedTo, setSubscribedTo] = useState(users[0]);
 
   useEffect(() => {
     let connection = createConnection(subscribedTo);
+
     connection.listen((newMessage) => {
       setMessages((prev) => [...prev, newMessage]);
     });
+
+
     return () => {
       connection.unsubscribe();
       setMessages([]);
-    };
+    }; 
   }, [subscribedTo]);
 
   return (

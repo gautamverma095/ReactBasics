@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { useRef } from "react"
 import { useState } from "react"
 
@@ -5,6 +6,14 @@ import { useState } from "react"
 const Timer = () => {
 
     const [time,setTime] = useState(0)
+    console.log(time);
+
+
+useEffect(() => {
+   return () => {
+       onStop()
+   }
+},[])
 
     const ref = useRef(null)
 
